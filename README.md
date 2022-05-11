@@ -9,10 +9,11 @@ The code supports training pre-trained models with a specified number of extra s
 
 ## What does each notebook do?
 
-ffhq256.ipynb: This is the main driver code, it trains a pretrained model for a specified number of steps on the babies small dataset.
-datasets.py: This has a modified datasetloader for the babies dataset.
-png-to-tfrecords.ipynb: This converts PNG images to tfrecord format, contains few different methods.
+**ffhq256.ipynb:** This is the main driver code, it trains a pretrained model for a specified number of steps on the babies small dataset.
+**datasets.py:** This has a modified datasetloader for the babies dataset.
+**png-to-tfrecords.ipynb:** This converts PNG images to tfrecord format, contains few different methods.
 
+You can change the small set used in to train the model and make likelihood calculation on in the config files under ffhq256 continous.
 
 
 ## References
