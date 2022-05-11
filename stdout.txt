@@ -1,0 +1,53 @@
+INFO - xla_bridge.py - 2022-04-08 20:52:52,154 - Unable to initialize backend 'tpu_driver': NOT_FOUND: Unable to find driver in registry given worker: 
+INFO - xla_bridge.py - 2022-04-08 20:52:52,171 - Unable to initialize backend 'gpu': NOT_FOUND: Could not find registered platform with name: "cuda". Available platform names are: Interpreter Host
+INFO - xla_bridge.py - 2022-04-08 20:52:52,172 - Unable to initialize backend 'tpu': INVALID_ARGUMENT: TpuPlatform is not available.
+WARNING - xla_bridge.py - 2022-04-08 20:52:52,172 - No GPU/TPU found, falling back to CPU. (Set TF_CPP_MIN_LOG_LEVEL=0 and rerun for more info.)
+INFO - run_lib.py - 2022-04-08 20:52:53,215 - Starting training loop at step 2400005.
+WARNING - utils.py - 2022-04-08 20:54:47,469 - No checkpoint found at ./checkpoints-meta/checkpoint.pth. Returned the same state as input
+INFO - run_lib.py - 2022-04-08 20:54:47,578 - Starting training loop at step 0.
+WARNING - utils.py - 2022-04-08 20:56:44,479 - No checkpoint found at ./checkpoints-meta/checkpoint.pth. Returned the same state as input
+INFO - run_lib.py - 2022-04-08 20:56:44,637 - Starting training loop at step 0.
+WARNING - utils.py - 2022-04-08 20:57:02,774 - No checkpoint found at ./checkpoints-meta/checkpoint.pth. Returned the same state as input
+INFO - run_lib.py - 2022-04-08 20:57:02,977 - Starting training loop at step 0.
+WARNING - utils.py - 2022-04-08 20:57:36,383 - No checkpoint found at ./checkpoints-meta/checkpoint.pth. Returned the same state as input
+INFO - run_lib.py - 2022-04-08 20:57:36,555 - Starting training loop at step 0.
+WARNING - utils.py - 2022-04-08 20:59:36,891 - No checkpoint found at ./checkpoints-meta/checkpoint.pth. Returned the same state as input
+INFO - run_lib.py - 2022-04-08 20:59:37,089 - Starting training loop at step 0.
+WARNING - utils.py - 2022-04-08 21:01:41,869 - No checkpoint found at exp/ve/celebahq_256_ncsnpp_continuous/checkpoint_48.pth. Returned the same state as input
+WARNING - utils.py - 2022-04-08 21:01:51,307 - No checkpoint found at ./checkpoints-meta/checkpoint.pth. Returned the same state as input
+INFO - run_lib.py - 2022-04-08 21:01:51,451 - Starting training loop at step 0.
+WARNING - utils.py - 2022-04-08 21:07:03,343 - No checkpoint found at exp/ve/celebahq_256_ncsnpp_continuous/checkpoint_48.pth. Returned the same state as input
+WARNING - utils.py - 2022-04-08 21:07:39,375 - No checkpoint found at ./checkpoints-meta/checkpoint.pth. Returned the same state as input
+INFO - run_lib.py - 2022-04-08 21:07:39,587 - Starting training loop at step 0.
+WARNING - utils.py - 2022-04-08 22:08:48,406 - No checkpoint found at exp/ve/celebahq_256_ncsnpp_continuous/checkpoint_48.pth. Returned the same state as input
+WARNING - utils.py - 2022-04-08 22:08:54,313 - No checkpoint found at ./checkpoints-meta/checkpoint.pth. Returned the same state as input
+INFO - run_lib.py - 2022-04-08 22:08:54,498 - Starting training loop at step 0.
+WARNING - utils.py - 2022-04-08 22:40:51,375 - No checkpoint found at ./checkpoints-meta/checkpoint.pth. Returned the same state as input
+INFO - run_lib.py - 2022-04-08 22:40:51,568 - Starting training loop at step 0.
+WARNING - utils.py - 2022-04-08 22:47:54,319 - No checkpoint found at exp/ve/celebahq_256_ncsnpp_continuous/checkpoint_48.pth. Returned the same state as input
+INFO - dataset_info.py - 2022-04-08 22:57:44,152 - Load pre-computed DatasetInfo (eg: splits, num examples,...) from GCS: mnist/3.0.1
+INFO - dataset_info.py - 2022-04-08 22:57:45,092 - Load dataset info from /tmp/tmp10zx10lutfds
+INFO - dataset_info.py - 2022-04-08 22:57:45,590 - Field info.citation from disk and from code do not match. Keeping the one from code.
+INFO - dataset_builder.py - 2022-04-08 22:57:45,591 - Generating dataset mnist (/home/nasseraa/tensorflow_datasets/mnist/3.0.1)
+WARNING - dataset_builder.py - 2022-04-08 22:57:47,018 - Dataset mnist is hosted on GCS. It will automatically be downloaded to your
+local data directory. If you'd instead prefer to read directly from our public
+GCS bucket (recommended if you're running on GCP), you can instead pass
+`try_gcs=True` to `tfds.load` or set `data_dir=gs://tfds-data/datasets`.
+
+INFO - dataset_info.py - 2022-04-08 22:57:49,541 - Load dataset info from /home/nasseraa/tensorflow_datasets/mnist/3.0.1.incomplete3305OH
+INFO - dataset_info.py - 2022-04-08 22:57:49,598 - Field info.citation from disk and from code do not match. Keeping the one from code.
+INFO - dataset_builder.py - 2022-04-08 22:57:49,612 - Constructing tf.data.Dataset for split train, from /home/nasseraa/tensorflow_datasets/mnist/3.0.1
+INFO - dataset_builder.py - 2022-04-08 23:05:04,255 - No config specified, defaulting to first: celeb_a_hq/1024
+INFO - dataset_info.py - 2022-04-08 23:05:05,185 - Load pre-computed DatasetInfo (eg: splits, num examples,...) from GCS: celeb_a_hq/1024/2.0.0
+INFO - dataset_info.py - 2022-04-08 23:05:07,464 - Load dataset info from /tmp/tmpvgjymneltfds
+INFO - dataset_info.py - 2022-04-08 23:05:07,471 - Field info.description from disk and from code do not match. Keeping the one from code.
+INFO - dataset_info.py - 2022-04-08 23:05:07,471 - Field info.citation from disk and from code do not match. Keeping the one from code.
+INFO - dataset_builder.py - 2022-04-08 23:05:07,472 - Generating dataset celeb_a_hq (/home/nasseraa/tensorflow_datasets/celeb_a_hq/1024/2.0.0)
+INFO - dataset_info.py - 2022-04-08 23:16:03,177 - Load pre-computed DatasetInfo (eg: splits, num examples,...) from GCS: celeb_a/2.0.1
+INFO - dataset_info.py - 2022-04-08 23:16:05,065 - Load dataset info from /tmp/tmpfj_klqr9tfds
+INFO - dataset_builder.py - 2022-04-08 23:16:05,070 - Generating dataset celeb_a (/home/nasseraa/tensorflow_datasets/celeb_a/2.0.1)
+INFO - download_manager.py - 2022-04-08 23:16:05,734 - Downloading https://drive.google.com/uc?export=download&id=0B7EVK8r0v71pZjFTYXZWM3FlRnM into /home/nasseraa/tensorflow_datasets/downloads/ucexport_download_id_0B7EVK8r0v71pZjFTYXZWM3FlDDaXUAQO8EGH_a7VqGNLRtW52mva1LzDrb-V723OQN8.tmp.7f7b7099b3ca4e409dd70d6ac4da0616...
+INFO - download_manager.py - 2022-04-08 23:16:05,740 - Downloading https://drive.google.com/uc?export=download&id=0B7EVK8r0v71pY0NSMzRuSXJEVkk into /home/nasseraa/tensorflow_datasets/downloads/ucexport_download_id_0B7EVK8r0v71pY0NSMzRuSXJE4OYZnheYf8_38ZWubhmIueQWaU9Xe0gIjD4rZYK-6iw.tmp.c538019038c74cf299a32cff143933f3...
+INFO - download_manager.py - 2022-04-08 23:16:05,747 - Downloading https://drive.google.com/uc?export=download&id=0B7EVK8r0v71pblRyaVFSWGxPY0U into /home/nasseraa/tensorflow_datasets/downloads/ucexport_download_id_0B7EVK8r0v71pblRyaVFSWGxPqmNvhNr_SZRozDtonT6daGXcRrWZZWDT9tfYjYVI_EU.tmp.ebb41160a84a40b488307ec616d02c9b...
+INFO - download_manager.py - 2022-04-08 23:16:05,753 - Downloading https://drive.google.com/uc?export=download&id=0B7EVK8r0v71pd0FJY3Blby1HUTQ into /home/nasseraa/tensorflow_datasets/downloads/ucexport_download_id_0B7EVK8r0v71pd0FJY3Blby1HbdQ1eXJPJLYv0yq8hL1lCD5T2aOraaQwvj25ndmE7pg.tmp.257db8333947491399b648f4280dc559...
+WARNING - utils.py - 2022-04-08 23:27:41,640 - No checkpoint found at exp/ve/ffhq_256_ncsnpp_continuous/checkpoint_48.pth. Returned the same state as input

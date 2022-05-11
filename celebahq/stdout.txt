@@ -1,0 +1,6 @@
+WARNING - utils.py - 2022-04-08 17:05:56,539 - No checkpoint found at ./celebahq/checkpoints-meta/checkpoint.pth. Returned the same state as input
+INFO - xla_bridge.py - 2022-04-08 17:05:56,807 - Unable to initialize backend 'tpu_driver': NOT_FOUND: Unable to find driver in registry given worker: 
+INFO - xla_bridge.py - 2022-04-08 17:05:56,808 - Unable to initialize backend 'gpu': NOT_FOUND: Could not find registered platform with name: "cuda". Available platform names are: Interpreter Host
+INFO - xla_bridge.py - 2022-04-08 17:05:56,808 - Unable to initialize backend 'tpu': INVALID_ARGUMENT: TpuPlatform is not available.
+WARNING - xla_bridge.py - 2022-04-08 17:05:56,808 - No GPU/TPU found, falling back to CPU. (Set TF_CPP_MIN_LOG_LEVEL=0 and rerun for more info.)
+INFO - run_lib.py - 2022-04-08 17:05:57,113 - Starting training loop at step 0.

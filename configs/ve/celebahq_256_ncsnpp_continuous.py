@@ -36,7 +36,7 @@ def get_config():
   data = config.data
   data.dataset = 'CelebAHQ'
   data.image_size = 256
-  data.tfrecords_path = '/home/yangsong/ncsc/celebahq/r08.tfrecords'
+  data.tfrecords_path = './records/r08.tfrecords'
 
 
   # model

@@ -36,7 +36,7 @@ def get_config():
   data = config.data
   data.dataset = 'FFHQ'
   data.image_size = 256
-  data.tfrecords_path = '/home/yangsong/ncsc/ffhq/ffhq-r08.tfrecords'
+  data.tfrecords_path = '/home/nasseraa/research_spring22/SBGM/score_sde_pytorch/babies.tfrecords'
 
 
   # model

@@ -151,10 +151,17 @@ def get_dataset(config, uniform_dequantization=False, evaluation=False):
     def preprocess_fn(d):
       sample = tf.io.parse_single_example(d, features={
         'shape': tf.io.FixedLenFeature([3], tf.int64),
-        'data': tf.io.FixedLenFeature([], tf.string)})
-      data = tf.io.decode_raw(sample['data'], tf.uint8)
+        'data': tf.io.FixedLenFeature([], tf.string)
+      })
+#       print('sample[data]: ', sample['data'])
+      data = tf.io.parse_tensor(sample['data'], tf.uint8)
+#       data = tf.io.decode_png(sample['data'], channels=3)
+#       print('data after reading: ', data)
+#       data = tf.reshape(data[22:], sample['shape'])
       data = tf.reshape(data, sample['shape'])
-      data = tf.transpose(data, (1, 2, 0))
+#       print('data after reshape: ', data)
+#       data = tf.transpose(data, (1, 2, 0))
+#       print('data after transpose: ', data)
       img = tf.image.convert_image_dtype(data, tf.float32)
       if config.data.random_flip and not evaluation:
         img = tf.image.random_flip_left_right(img)

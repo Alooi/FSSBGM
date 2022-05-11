@@ -44,7 +44,7 @@ from utils import save_checkpoint, restore_checkpoint
 FLAGS = flags.FLAGS
 
 
-def train(config, workdir):
+def train(config, workdir, extra_steps):
   """Runs the training pipeline.
 
   Args:
@@ -117,7 +117,7 @@ def train(config, workdir):
                       config.data.image_size, config.data.image_size)
     sampling_fn = sampling.get_sampling_fn(config, sde, sampling_shape, inverse_scaler, sampling_eps)
 
-  num_train_steps = config.training.n_iters
+  num_train_steps = config.training.n_iters + extra_steps
 
   # In case there are multiple hosts (e.g., TPU pods), only log to host 0
   logging.info("Starting training loop at step %d." % (initial_step,))
@@ -125,8 +125,10 @@ def train(config, workdir):
   for step in range(initial_step, num_train_steps + 1):
     # Convert data to JAX arrays and normalize them. Use ._numpy() to avoid copy.
     batch = torch.from_numpy(next(train_iter)['image']._numpy()).to(config.device).float()
-    batch = batch.permute(0, 3, 1, 2)
+#     batch = batch.permute(0, 3, 1, 2)
     batch = scaler(batch)
+#     print(batch.size())
+#     print(state)
     # Execute one training step
     loss = train_step_fn(state, batch)
     if step % config.training.log_freq == 0:
@@ -140,7 +142,7 @@ def train(config, workdir):
     # Report the loss on an evaluation dataset periodically
     if step % config.training.eval_freq == 0:
       eval_batch = torch.from_numpy(next(eval_iter)['image']._numpy()).to(config.device).float()
-      eval_batch = eval_batch.permute(0, 3, 1, 2)
+#       eval_batch = eval_batch.permute(0, 3, 1, 2)
       eval_batch = scaler(eval_batch)
       eval_loss = eval_step_fn(state, eval_batch)
       logging.info("step: %d, eval_loss: %.5e" % (step, eval_loss.item()))
@@ -162,7 +164,8 @@ def train(config, workdir):
         tf.io.gfile.makedirs(this_sample_dir)
         nrow = int(np.sqrt(sample.shape[0]))
         image_grid = make_grid(sample, nrow, padding=2)
-        sample = np.clip(sample.permute(0, 2, 3, 1).cpu().numpy() * 255, 0, 255).astype(np.uint8)
+#         sample = np.clip(sample.permute(0, 2, 3, 1).cpu().numpy() * 255, 0, 255).astype(np.uint8)
+        sample = np.clip(sample.cpu().numpy() * 255, 0, 255).astype(np.uint8)
         with tf.io.gfile.GFile(
             os.path.join(this_sample_dir, "sample.np"), "wb") as fout:
           np.save(fout, sample)
@@ -288,7 +291,7 @@ def evaluate(config,
       eval_iter = iter(eval_ds)  # pytype: disable=wrong-arg-types
       for i, batch in enumerate(eval_iter):
         eval_batch = torch.from_numpy(batch['image']._numpy()).to(config.device).float()
-        eval_batch = eval_batch.permute(0, 3, 1, 2)
+#         eval_batch = eval_batch.permute(0, 3, 1, 2)
         eval_batch = scaler(eval_batch)
         eval_loss = eval_step(state, eval_batch)
         all_losses.append(eval_loss.item())
@@ -310,7 +313,7 @@ def evaluate(config,
         for batch_id in range(len(ds_bpd)):
           batch = next(bpd_iter)
           eval_batch = torch.from_numpy(batch['image']._numpy()).to(config.device).float()
-          eval_batch = eval_batch.permute(0, 3, 1, 2)
+#           eval_batch = eval_batch.permute(0, 3, 1, 2)
           eval_batch = scaler(eval_batch)
           bpd = likelihood_fn(score_model, eval_batch)[0]
           bpd = bpd.detach().cpu().numpy().reshape(-1)
@@ -337,7 +340,8 @@ def evaluate(config,
           eval_dir, f"ckpt_{ckpt}")
         tf.io.gfile.makedirs(this_sample_dir)
         samples, n = sampling_fn(score_model)
-        samples = np.clip(samples.permute(0, 2, 3, 1).cpu().numpy() * 255., 0, 255).astype(np.uint8)
+#         samples = np.clip(samples.permute(0, 2, 3, 1).cpu().numpy() * 255., 0, 255).astype(np.uint8)
+        samples = np.clip(samples.cpu().numpy() * 255., 0, 255).astype(np.uint8)
         samples = samples.reshape(
           (-1, config.data.image_size, config.data.image_size, config.data.num_channels))
         # Write samples to disk or Google Cloud Storage
