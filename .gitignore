@@ -75,5 +75,8 @@ cifar10/checkpoints-meta/checkpoint.pth
 ffhq-r08.tfrecords
 newBabies.tfrecord
 
-#cache files
+#cache files, checkpoint files, and images produced at different checkpoints.
+dcgm*
 events*
+checkpoint*
+cifar10/samples

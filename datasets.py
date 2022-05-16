@@ -156,7 +156,7 @@ def get_dataset(config, uniform_dequantization=False, evaluation=False):
 #       print('sample[data]: ', sample['data'])
       data = tf.io.parse_tensor(sample['data'], tf.uint8)
 #       data = tf.io.decode_png(sample['data'], channels=3)
-#       print('data after reading: ', data)
+      print('data after reading: ', data)
 #       data = tf.reshape(data[22:], sample['shape'])
       data = tf.reshape(data, sample['shape'])
 #       print('data after reshape: ', data)
@@ -179,6 +179,11 @@ def get_dataset(config, uniform_dequantization=False, evaluation=False):
         img = (tf.random.uniform(img.shape, dtype=tf.float32) + img * 255.) / 256.
 
       return dict(image=img, label=d.get('label', None))
+    def predicate(x, allowed_labels=tf.constant([0])):
+        label = x['label']
+        isallowed = tf.equal(allowed_labels, tf.cast(label, allowed_labels.dtype))
+        reduced = tf.reduce_sum(tf.cast(isallowed, tf.float32))
+        return tf.greater(reduced, tf.constant(0.))
 
   def create_dataset(dataset_builder, split):
     dataset_options = tf.data.Options()
@@ -192,6 +197,8 @@ def get_dataset(config, uniform_dequantization=False, evaluation=False):
         split=split, shuffle_files=True, read_config=read_config)
     else:
       ds = dataset_builder.with_options(dataset_options)
+#     if config.data.dataset == 'CIFAR10': 
+#         ds = ds.filter(predicate)
     ds = ds.repeat(count=num_epochs)
     ds = ds.shuffle(shuffle_buffer_size)
     ds = ds.map(preprocess_fn, num_parallel_calls=tf.data.experimental.AUTOTUNE)

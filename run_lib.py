@@ -125,7 +125,8 @@ def train(config, workdir, extra_steps):
   for step in range(initial_step, num_train_steps + 1):
     # Convert data to JAX arrays and normalize them. Use ._numpy() to avoid copy.
     batch = torch.from_numpy(next(train_iter)['image']._numpy()).to(config.device).float()
-#     batch = batch.permute(0, 3, 1, 2)
+    if config.data.dataset == 'CIFAR10':
+        batch = batch.permute(0, 3, 1, 2)
     batch = scaler(batch)
 #     print(batch.size())
 #     print(state)
@@ -142,7 +143,8 @@ def train(config, workdir, extra_steps):
     # Report the loss on an evaluation dataset periodically
     if step % config.training.eval_freq == 0:
       eval_batch = torch.from_numpy(next(eval_iter)['image']._numpy()).to(config.device).float()
-#       eval_batch = eval_batch.permute(0, 3, 1, 2)
+      if config.data.dataset == 'CIFAR10':
+          eval_batch = eval_batch.permute(0, 3, 1, 2)
       eval_batch = scaler(eval_batch)
       eval_loss = eval_step_fn(state, eval_batch)
       logging.info("step: %d, eval_loss: %.5e" % (step, eval_loss.item()))
@@ -164,8 +166,10 @@ def train(config, workdir, extra_steps):
         tf.io.gfile.makedirs(this_sample_dir)
         nrow = int(np.sqrt(sample.shape[0]))
         image_grid = make_grid(sample, nrow, padding=2)
-#         sample = np.clip(sample.permute(0, 2, 3, 1).cpu().numpy() * 255, 0, 255).astype(np.uint8)
-        sample = np.clip(sample.cpu().numpy() * 255, 0, 255).astype(np.uint8)
+        if config.data.dataset == 'CIFAR10':
+            sample = np.clip(sample.permute(0, 2, 3, 1).cpu().numpy() * 255, 0, 255).astype(np.uint8)
+        else:
+            sample = np.clip(sample.cpu().numpy() * 255, 0, 255).astype(np.uint8)
         with tf.io.gfile.GFile(
             os.path.join(this_sample_dir, "sample.np"), "wb") as fout:
           np.save(fout, sample)
